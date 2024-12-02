@@ -50,7 +50,7 @@ fun DogImageScreen(modifier: Modifier = Modifier) {
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(0.8f),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     text = "¡Bienvenido a mi app de perros!",
@@ -71,20 +71,21 @@ fun DogImageScreen(modifier: Modifier = Modifier) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth(1f)
-                    .aspectRatio(1f)
-                    .align(Alignment.CenterHorizontally)
-                    .padding(16.dp)
+                    .aspectRatio(0.7f)
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+
             ) {
                 androidx.compose.animation.AnimatedVisibility(
                     visible = isLoading,
                     enter = fadeIn() + scaleIn(initialScale = 0.8f, animationSpec = spring()),
                     exit = fadeOut(),
-                    modifier = Modifier.align(Alignment.Center)
                 ) {
                     CircularProgressIndicator(
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier
                             .size(48.dp)
+                            .align(Alignment.Center)
                     )
                 }
 
@@ -100,11 +101,10 @@ fun DogImageScreen(modifier: Modifier = Modifier) {
                             .error(R.drawable.ic_error_24)
                             .build(),
                         contentDescription = "Imagen de un perro",
-                        contentScale = ContentScale.Crop,
+                        contentScale = ContentScale.FillWidth,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .aspectRatio(1.5f)
-                            .clip(RoundedCornerShape(12.dp))
+                            .clip(RoundedCornerShape(16.dp))
                     )
                 }
             }
